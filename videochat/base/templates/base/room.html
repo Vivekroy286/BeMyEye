@@ -3,7 +3,44 @@
  
 {% block content %}
 
-<h2>Room</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat Room</title>
+    <style>
+        /* Add your CSS styles here */
+        #video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        video {
+            max-width: 60%;
+            max-height: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="local-video" autoplay muted></video>
+    </div>
+    <script>
+        // Add your JavaScript code here
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(stream => {
+                const localVideo = document.getElementById('local-video');
+                localVideo.srcObject = stream;
+            })
+            .catch(error => {
+                console.error('Error accessing media devices:', error);
+            });
+    </script>
+</body>
+</html>
+
     
 {% endblock content %}
     
